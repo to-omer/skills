@@ -1,0 +1,17 @@
+{
+  "name": "to-omer",
+  "plugins": [
+    {
+      "name": "to-omer-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/to-omer-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

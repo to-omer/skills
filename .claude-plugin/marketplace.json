@@ -1,0 +1,14 @@
+{
+  "name": "to-omer",
+  "owner": {
+    "name": "to-omer"
+  },
+  "description": "Personal skills maintained by to-omer.",
+  "plugins": [
+    {
+      "name": "to-omer-skills",
+      "source": "./plugins/to-omer-skills",
+      "description": "Personal skills maintained by to-omer."
+    }
+  ]
+}

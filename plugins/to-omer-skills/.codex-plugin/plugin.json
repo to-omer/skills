@@ -1,0 +1,20 @@
+{
+  "name": "to-omer-skills",
+  "version": "0.1.0",
+  "description": "Personal skills maintained by to-omer.",
+  "author": {
+    "name": "to-omer"
+  },
+  "license": "MIT",
+  "interface": {
+    "displayName": "to-omer Skills",
+    "shortDescription": "Personal skills maintained by to-omer",
+    "longDescription": "A collection of personal Codex skills maintained by to-omer.",
+    "developerName": "to-omer",
+    "category": "Productivity",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": []
+  }
+}

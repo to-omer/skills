@@ -1,0 +1,4 @@
+interface:
+  display_name: "読みやすい日本語文書"
+  short_description: "日本語文書の意味を保ち、見つけやすく理解しやすい形に整える"
+  default_prompt: "$japanese-readable-writingを使い、この日本語文書を意味を保ったまま読みやすく整えてください。"
