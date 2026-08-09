@@ -1,4 +1,4 @@
 interface:
   display_name: "読みやすい日本語文書"
-  short_description: "日本語文書の意味を保ち、見つけやすく理解しやすい形に整える"
-  default_prompt: "$japanese-readable-writingを使い、この日本語文書を意味を保ったまま読みやすく整えてください。"
+  short_description: "必要情報と意味を保ち、全体像から自然に理解できる日本語へ整える"
+  default_prompt: "$japanese-readable-writingを使い、作業種別を区別し、必要情報と意味を保ったまま、全体像・概念の順序・段落の流れ・一文一語を整えてください。適用対象の参照資料を実際に照合し、六段階のレビューを省略しないでください。"
