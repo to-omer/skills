@@ -1,4 +1,6 @@
 interface:
   display_name: "Create Readable HTML Document"
   short_description: "Create readable, accessible single-file HTML documents"
-  default_prompt: "Use $create-html-document to create a readable, accessible single-file HTML document while preserving the source meaning and language. Apply both reference files and complete all seven review stages. Use a versioned CDN library such as KaTeX when it materially improves correctness or readability, and preserve a readable fallback."
+  default_prompt: >-
+    Use $create-html-document to turn the supplied content into a readable, accessible single-file HTML document.
+    Preserve the requested meaning, language, and editing scope, and validate the finished page before delivery.
