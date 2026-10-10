@@ -1,20 +1,34 @@
 # 根拠と適用範囲
 
-各規則の背景を確認するための主な参照先を示す。具体的な判断基準は、Skill 本文とほかの参照資料に示している。
+- 日本語の表現と記法を確かめるための参照先を示す。
+  - 参照資料の内容を、推敲対象の原文にない事実の代わりにはしない。
+  - 原文の意味と編集範囲は、依頼と提供資料から確かめる。
 
-## 日本語と文書構成
+## 日本語の表現
 
-- [文化審議会建議「公用文作成の考え方」](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93650001_01.pdf) — 読み手に応じた構成、主述、修飾、用語、表記、目的別の書き分け
-- [在留支援のためのやさしい日本語ガイドライン](https://www.moj.go.jp/isa/support/portal/plainjapanese_guideline.html) — 読者の背景知識、主体の明示、文の組み立て、具体的な情報の示し方
-- [ISO 24495-1:2023 Plain language — Part 1](https://www.iso.org/standard/78907.html) — 読者が情報を見つけ、理解し、利用できる文書の原則
+- [文化審議会建議「公用文作成の考え方」](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93650001_01.pdf)
+  - 主語と述語、修飾、用語、表記、読み手に応じた表現の参照先。
+  - 公用文向けの表記や文体を、引用・随筆・専門文書へ一律に適用しない。
+- [在留支援のためのやさしい日本語ガイドライン](https://www.moj.go.jp/isa/support/portal/plainjapanese_guideline.html)
+  - 読者の背景知識、主体の明示、文の組み立てを考える際の参照先。
+  - 語彙を平易にするために、必要な専門語や条件まで失わない。
 
-## 情報の示し方と Markdown
+## 記法と情報の対応
 
-- [Web Content Accessibility Guidelines 2.2](https://www.w3.org/TR/WCAG22/) — 情報を色、位置、画像など一つの表現だけに依存させない考え方
-- [CommonMark](https://spec.commonmark.org/) — Markdown の基本構文
-- [GitHub Flavored Markdown](https://github.github.com/gfm/) — 表などを含む拡張構文
+- [CommonMark](https://spec.commonmark.org/0.31.2/)
+  - 見出し、リスト、引用、強調、リンク、コードなどの記法を確認する。
+- [GitHub Flavored Markdown](https://github.github.com/gfm/)
+  - 表などの拡張記法を確認する。
+  - 数式の表示は利用先の仕様にもよるため、これらの仕様だけで保証しない。
+- [W3C WAI「Content Structure」](https://www.w3.org/WAI/tutorials/page-structure/content/)
+  - 項目の親子関係、順序、引用の範囲を、記法と対応させる考え方を参照する。
+  - 表現の修正時に関係を壊さないために使い、特定の表示形式へ変える根拠にはしない。
 
-## 読解と文章構造
+## 設計上の判断
 
-- Lorch, R. F. Jr. (1989), “Text-signaling devices and their effects on reading and memory processes” — 見出しや予告が文書構造の把握に与える影響
-- McNamara, D. S. et al. (1996), “Are good texts always better?” — 読者の背景知識と、説明をどこまで明示するかの関係
+- このSKILLは、内容や構成を決めることと、表現を推敲することを分けている。
+  - 短文、地の文、箇条書きのどれも、選ばれた形式の中で自然に読めるよう整える。
+  - 意味を読み取るには文脈が必要なので、語句だけを切り出して判断しない。
+- この分担と、個々の参照資料の知見は別である。
+  - これらの資料が、このSKILLの効果や特定の記法の優位を実証したわけではない。
+  - ファイルや構文の検査だけで、日本語の自然さや理解のしやすさは判定しない。
