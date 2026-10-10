@@ -1,0 +1,4 @@
+interface:
+  display_name: "短文の階層箇条書き"
+  short_description: "要点を浅い階層に、理由や具体例をその下に置き、必要な箇所を選んで読める文章に整える"
+  default_prompt: "$reader-first-structureを使い、依頼された編集範囲と意味を保ちながら、要点を浅い階層に、理由・具体例・補足をその下に置き、短文の箇条書きで階層的に整理してください。"
