@@ -3,8 +3,7 @@ name: create-html-document
 description: >-
   Convert supplied text, Markdown, notes, documents, or structured content into a readable, accessible single-file HTML document.
   Use for guides, reports, articles, reference pages, or richer previewable replacements for Markdown.
-  Preserve the supplied meaning and language, reuse the document styles, and visualize quantities, relationships, procedures, or state changes when this aids understanding.
-  Handle HTML semantics, CSS, JavaScript, math, code, diagrams, assets, external dependencies, and browser validation.
+  Preserve meaning and language, reuse the document styles, and support math, code, diagrams, and document navigation with browser validation.
 ---
 
 # 読みやすい単一 HTML 文書を作る
@@ -25,17 +24,9 @@ description: >-
 
 ## 成果物の境界
 
-HTML ファイルには、ユーザーが依頼した文書だけを含める。次の内容は、文書の一部として明示的に求められた場合を除き、`body`、`head` 内のメタ要素、HTML コメント、埋め込みデータ、JavaScript の文字列へ入れない。
+HTML には依頼された文書を含め、作業計画・経緯、内部レビュー、検証結果、納品案内、仮置き文やデバッグ情報はチャットなどの外側へ分ける。この境界は、本文だけでなくメタ要素、コメント、埋め込みデータにも適用する。作業記録自体が依頼された文書の場合は、その範囲を掲載する。
 
-- Skill を使用したことの説明
-- 依頼の復唱、作業計画、作業経緯
-- 内部レビューの記録、自己評価、採点
-- 確認結果、修正一覧、未実施事項
-- 依頼対応上の補足、免責、納品説明
-- ファイル案内、保存案内、ダウンロード案内
-- TODO、仮置き文、デバッグ情報、内部メモ
-
-必要な連絡や検証結果は、チャットや納品メッセージなど、HTML の外側へ分ける。一方、文書の読者に必要な注記、出典、利用条件、アクセシビリティ上の説明は文書内容である。作業上のメタ情報と混同して削除しない。
+読者に必要な注記、出典、利用条件、アクセシビリティ上の説明は文書内容として保つ。
 
 ## 作業の進め方
 
@@ -51,11 +42,13 @@ HTML ファイルには、ユーザーが依頼した文書だけを含める。
 
 原文の順序と階層を確認し、各要素を内容上の役割に合う HTML で表す。要素の選択と DOM 順序は、[文書構造](references/readability-and-layout.md#文書構造) を基準にする。
 
+通読する内容は連続表示、独立して参照する区分はタブを候補にする。タブを使う場合は [ナビゲーションと文書操作](references/navigation-and-controls.md) を読み、全文表示や参照・検索・印刷も扱う。
+
 ### 3. 読みやすい表示を設計する
 
-既存のデザイン指定がない場合は、[基準 CSS](assets/document.css) と [部品見本](assets/components.html) を使う。本文、表、コード、補足、図の配色と文字組みを引き継ぎ、読者の利用方法に必要な調整を加える。指定されたデザインがある場合は、それに合わせて共通トークンを調整する。
+指定されたデザインがない場合は、[基準 CSS](assets/document.css) と [部品見本](assets/components.html) を使う。指定がある場合は共通トークンを調整する。本文幅、文字組み、配色、ラベルの判断は [読みやすさとレイアウト](references/readability-and-layout.md) を参照する。
 
-本文幅、余白、見出し、目次、タイポグラフィ、配色、レスポンシブ表示は [読みやすさとレイアウト](references/readability-and-layout.md) に従う。
+明暗切替・印刷には [共通 JavaScript](assets/document.js) を使い、必要な操作を組み込む。配置と操作条件は [ナビゲーションと文書操作](references/navigation-and-controls.md#ヘッダとアイコンボタン)、タブの構成は [タブ付き文書の見本](assets/tabbed-document.html) を参照する。
 
 ### 4. 文書に必要な要素を実装する
 

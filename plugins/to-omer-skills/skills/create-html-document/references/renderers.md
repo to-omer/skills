@@ -23,7 +23,7 @@
 - 必要なライブラリだけを使う。通常の文書に UI フレームワークや複数の構文ハイライターを常設しない。
 - 主要内容は生成時に HTML / SVG へ描画し、最終 HTML の本文へ含める。操作に必要な JavaScript を追加する。
 - 信頼できる CDN も使える。バージョンを固定し、描画器と CSS・フォントを同じ版に揃える。オフライン指定では CSS、フォント、必要な JS もインライン化し、相対パスやネットワーク依存を残さない。
-- 描画器の CSS の後に [基準 CSS](../assets/document.css) をインライン化する。本文と部品の配色は `--paper` / `--surface` / `--ink` / `--muted` / `--edge` / `--accent` / `--link` に合わせる。明暗と印刷は図やコードにも適用する。
+- 描画器の CSS の後に [基準 CSS](../assets/document.css) をインライン化する。本文と部品の配色は `--paper` / `--surface` / `--ink` / `--heading` / `--strong` / `--muted` / `--edge` / `--accent` / `--link` に合わせる。明暗と印刷は図やコードにも適用する。
 - 元のコード・式・データを保つ。描画できない場合は、設定・組み込み方法を修正し、数式以外では必要に応じて別の描画器を選ぶ。最終成果物にエラーメッセージや空の図を残さない。
 
 以下の Node.js 例は ESM の生成処理で使う。各例の `html` または `svg` を文書へ組み込み、必要なスタイルを `head` に追加する。API の確認に使った版は KaTeX 0.19.0、Shiki 4.5.0、Diffs 1.5.2、Observable Plot 0.6.17、Mermaid 12.2.0。更新時は使う API と実表示を確認する。
@@ -77,17 +77,26 @@ KaTeX の内部クラスは改名しない。CSS を埋め込む際も、各 `@f
 
 ## 通常のコード：Shiki
 
+通常の文書では、基準 CSS の `--code-*` と組み合わせる CSS 変数テーマを使う。コードの背景・基本文字・予約語を文書の背景面・本文・アクセントにそろえ、文字列とコメントも低彩度で読み分けられるようにする。
+
 ```js
 import {codeToHtml} from "shiki";
+import {createCssVariablesTheme} from "shiki/core";
+const documentTheme = createCssVariablesTheme({
+  name: "document-code",
+  variablePrefix: "--code-",
+  fontStyle: false
+});
 const source = 'const message = "<hello>";\nconsole.log(message);';
 const html = await codeToHtml(source, {
   lang: "javascript",
-  themes: {light: "github-light", dark: "github-dark"},
-  defaultColor: false
+  theme: documentTheme
 });
 ```
 
-この出力にはブラウザー用ハイライターは不要。[二つのテーマ](https://shiki.style/guide/dual-themes)の CSS 変数を出力し、基準 CSS の `.shiki` 規則で `data-theme`、OS の明暗、印刷へ合わせる。独自 CSS を使う場合も `--shiki-light` / `--shiki-dark` と背景色を切り替え、印刷は明色を明示する。
+この出力にはブラウザー用ハイライターは不要。[CSS 変数テーマ](https://shiki.style/guide/theme-colors#css-variables-theme)の `--code-*` は基準 CSS から受け取り、`data-theme`、OS の明暗、印刷、パレットへ追従する。HTML のインラインスタイルに出力される変数を残す。ANSI の端末色を保つ必要がある場合は対応色も定義・検証するか、ANSI に対応した明暗テーマを使う。
+
+コード中心の文書などで特定のテーマを選ぶ場合は、`themes: {light: "github-light", dark: "github-dark"}, defaultColor: false` のように[二つのテーマ](https://shiki.style/guide/dual-themes)で生成できる。基準 CSS の `.shiki-themes` 規則はこの形式だけに適用し、CSS 変数テーマを上書きしない。独自 CSS でも文字と背景を同時に切り替え、印刷は明色を明示する。
 
 構文色はテーマの背景色と組み合わせて使う。コードや差分の背景だけを本文の `--surface` へ差し替えると、文字のコントラストが下がる場合がある。
 
@@ -100,13 +109,19 @@ const html = await codeToHtml(source, {
 短い変更の説明は一列の差分を基本にする。左右の対応を追う用途では分割表示も使えるが、狭い画面と印刷は一列へ戻す。色に加えて `+` / `-` を表示する。
 
 ```js
+import {createCssVariablesTheme} from "shiki/core";
+import {registerCustomTheme} from "@pierre/diffs";
 import {preloadMultiFileDiff} from "@pierre/diffs/ssr";
+const documentTheme = createCssVariablesTheme({
+  name: "document-code", variablePrefix: "--code-", fontStyle: false
+});
+registerCustomTheme(documentTheme.name, async () => documentTheme);
 const oldFile = {name: "example.js", contents: "const total = 1;\n"};
 const newFile = {name: "example.js", contents: "const total = 2;\n"};
 const {prerenderedHTML} = await preloadMultiFileDiff({
   oldFile, newFile,
   options: {
-    theme: {light: "github-light", dark: "github-dark"},
+    theme: documentTheme.name,
     themeType: "system", diffStyle: "unified", diffIndicators: "classic",
     overflow: "wrap", expandUnchanged: true, disableFileHeader: true,
     unsafeCSS: `:host { color-scheme: inherit; }
@@ -120,6 +135,10 @@ const html = `<diffs-container><template shadowrootmode="open">${prerenderedHTML
 ```
 
 この出力は CSS を含む Declarative Shadow DOM 用の断片。`template` を含めて最終 HTML へ保存する。外側の CSS は内部の `pre` や行へ直接届かないため、必要な変更は生成オプションの `unsafeCSS` に記す。上の例は文書の `color-scheme` を継承し、印刷では明色にする。
+
+通常コードと同じ CSS 変数テーマを生成プロセス内で一度登録する。`--code-*` は Shadow DOM へも継承される。Diffs 1.5.2 では追加・削除・変更の色を CSS 変数から正しく取り出せないため、基準 CSS の `--diffs-addition-color-override` / `--diffs-deletion-color-override` / `--diffs-modified-color-override` を残す。単一テーマから出力される明暗指定を文書に合わせるため、上の `color-scheme` の指定も残す。
+
+基準 CSS は追加を緑、削除を赤で示し、行・行番号・変更語句の背景を明暗別に指定する。配色を調整するときは、追加・削除の見分けやすさと、各背景上の文字・`+` / `-` のコントラストを両立させる。
 
 対応ブラウザーでは初期 HTML だけで表示できる。コピーや行選択などの操作はこの SSR 例には含まれない。必要な操作を実装・検証してから表示し、元ファイルをコピー対象にする。静的表示では未変更行の展開ボタンに依存しない。元ファイルのない部分パッチでは、含まれていない行を補って作らない。
 

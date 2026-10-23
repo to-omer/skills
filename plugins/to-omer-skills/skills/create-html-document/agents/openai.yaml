@@ -1,4 +1,4 @@
 interface:
   display_name: "Create Readable HTML Document"
-  short_description: "Create consistent HTML documents with useful visualizations"
-  default_prompt: "Use $create-html-document to turn the supplied content into a readable single-file HTML document, reuse the document styles, visualize useful relationships and changes, and validate the result while preserving the requested meaning and language."
+  short_description: "Readable HTML with accessible tabs and document controls"
+  default_prompt: "Use $create-html-document to create a readable single-file HTML document, choose continuous reading or tabs for the content, include compact document controls, preserve meaning, and validate the result."
