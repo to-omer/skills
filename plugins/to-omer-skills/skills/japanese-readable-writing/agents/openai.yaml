@@ -1,4 +1,0 @@
-interface:
-  display_name: "読みやすい日本語文書"
-  short_description: "意味と構成を保ちながら、語彙・助詞・語順・文末・表記を整える"
-  default_prompt: "$japanese-readable-writingを使い、依頼された作業種別、文体、編集範囲に合わせて、意味と構成を保ちながら日本語の表現を整えてください。"

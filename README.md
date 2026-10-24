@@ -2,7 +2,6 @@
 
 ## Skills
 
-- `japanese-readable-writing`
 - `create-html-document`
 - `reader-first-structure`
 
