@@ -32,7 +32,7 @@
 
       <section aria-labelledby="record-heading">
         <h2 id="record-heading">記録する項目</h2>
-        <p>一つの記録には、確認した内容、出典、確認日をまとめる。複数の出典が同じ事実を扱う場合は、対応を保ったまま関連付ける。</p>
+        <p>一つの記録には、確認した内容、出典、確認日をまとめる。複数の出典が同じ事実を扱う場合は、対応関係を保ったまま関連付ける。</p>
         <ol>
           <li>何を確認したいかを一文で書く</li>
           <li>判断に必要な原資料を読む</li>
@@ -43,7 +43,7 @@
         </aside>
         <details data-print="open">
           <summary>出典が更新されたとき</summary>
-          <p>変更した記述とその根拠を確認し、以前の判断に影響する箇所を更新する。関連する記録も、元の出典へ戻って確かめる。</p>
+          <p>変更された記述とその根拠を確認し、以前の判断に影響する箇所を更新する。関連する記録も、元の出典に戻って確かめる。</p>
         </details>
       </section>
 
@@ -67,7 +67,7 @@
           <div class="diagram-scroll" tabindex="0" role="region" aria-label="状態ごとの記録件数の図">
             <svg xmlns="http://www.w3.org/2000/svg" width="360" height="180" viewBox="0 0 360 180" role="img" aria-labelledby="status-chart-title status-chart-description">
               <title id="status-chart-title">確認済みの記録が最も多い</title>
-              <desc id="status-chart-description">確認済み42件、確認中28件、未着手18件。横軸は件数で、棒の長さを0から示す。</desc>
+              <desc id="status-chart-description">確認済み42件、確認中28件、未着手18件。横軸は件数で、0を基準に棒の長さで示す。</desc>
               <g fill="var(--ink)" font-size="14">
                 <text x="76" y="35" text-anchor="end">確認済み</text>
                 <text x="76" y="77" text-anchor="end">確認中</text>
@@ -97,7 +97,7 @@
 
       <section aria-labelledby="format-heading">
         <h2 id="format-heading">同じ形式で保存する</h2>
-        <p>記録の識別子は更新後も保つ。たとえば、確認状態は <code>status</code> に格納できる。</p>
+        <p>記録の識別子は更新後も変えずに保つ。たとえば、確認状態は <code>status</code> に記録できる。</p>
         <figure class="code-block">
           <figcaption>記録の例 · JSON</figcaption>
           <pre aria-label="記録を表すJSON" class="shiki document-code" style="background-color:var(--code-background);color:var(--code-foreground)" tabindex="0"><code><span class="line"><span style="color:var(--code-foreground)">{</span></span>

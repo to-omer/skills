@@ -44,7 +44,7 @@
         <div id="reference-sections">
           <section id="sources" data-tab-panel aria-labelledby="sources-heading">
             <h2 id="sources-heading">資料の見方</h2>
-            <p>調べる主張と、それを確かめられる資料を対応させる。資料の種類だけで判断せず、対象範囲と確認したい内容が一致しているかを見る。</p>
+            <p>調べたい主張と、それを確かめられる資料を対応させる。資料の種類だけで判断せず、対象範囲と確認したい内容が一致しているかを見る。</p>
 
             <h3 id="source-primary">原資料に戻る</h3>
             <p>製品の挙動なら公式仕様や実装、実験の結果なら論文本文や公開データを確認する。解説記事で見つけた主張は、その記事が挙げた原資料までたどる。</p>
@@ -58,7 +58,7 @@
             <p>更新日が新しくても、引用しているデータや対象の版が新しいとは限らない。公開日、更新日、実験日、製品の版を分けて記録する。</p>
             <details data-print="open">
               <summary>資料同士の説明が異なるとき</summary>
-              <p>対象の版、用語の定義、前提条件を照合する。解消しない違いは、どの判断に影響するかとともに残す。</p>
+              <p>対象の版・用語の定義・前提条件を照合する。それでも違いが解消しない場合は、どの判断に影響するかも添えて残す。</p>
             </details>
             <p>調べ直す時期は、<a href="#check-updates">更新の確認</a>で整理できる。</p>
 
@@ -69,7 +69,7 @@
 
           <section id="records" data-tab-panel aria-labelledby="records-heading">
             <h2 id="records-heading">記録形式</h2>
-            <p>一つの記録に、一つの判断とその根拠をまとめる。後から出典を置き換えても、記録の識別子は保つ。</p>
+            <p>一つの記録には、一つの判断とその根拠をまとめる。後から出典を差し替えても、記録の識別子は変えずに保つ。</p>
 
             <h3 id="record-fields">記録する項目</h3>
             <div class="table-wrap" tabindex="0" role="region" aria-label="記録項目">
@@ -79,7 +79,7 @@
                   <tr><th scope="row">問い</th><td>何を確かめるための記録か</td></tr>
                   <tr><th scope="row">確認内容</th><td>資料や実測から確認できたこと</td></tr>
                   <tr><th scope="row">出典と時点</th><td>URL、資料の版、確認日</td></tr>
-                  <tr><th scope="row">判断</th><td>根拠から何を採用するか、その条件</td></tr>
+                  <tr><th scope="row">判断</th><td>根拠を踏まえて何を採用するか、またその条件</td></tr>
                   <tr><th scope="row">未解決の点</th><td>未確認の内容と、結論への影響</td></tr>
                 </tbody>
               </table>
@@ -100,7 +100,7 @@
 
             <details data-print="open">
               <summary>複数の記録をまとめる例</summary>
-              <p>一行を一つの記録にする NDJSON 形式なら、記録を順に読み込める。以下は説明用データで、各行の識別子と状態を対応させている。</p>
+              <p>一行に一件の記録を書く NDJSON 形式なら、記録を順に読み込める。以下は説明用データで、各行の識別子と状態を対応させている。</p>
               <figure class="code-block">
                 <figcaption>記録一覧 · NDJSON</figcaption>
                 <pre aria-label="複数の記録のNDJSON例" class="shiki document-code" style="background-color:var(--code-background);color:var(--code-foreground)" tabindex="0"><code><span class="line"><span style="color:var(--code-foreground)">{</span><span style="color:var(--code-token-keyword)">"id"</span><span style="color:var(--code-token-punctuation)">:</span><span style="color:var(--code-token-string-expression)">"record-001"</span><span style="color:var(--code-token-punctuation)">,</span><span style="color:var(--code-token-keyword)">"status"</span><span style="color:var(--code-token-punctuation)">:</span><span style="color:var(--code-token-string-expression)">"reviewed"</span><span style="color:var(--code-foreground)">}</span></span>
@@ -145,7 +145,7 @@
             </ul>
 
             <h3 id="check-updates">更新の確認</h3>
-            <p>資料が更新されたら、変更箇所だけでなく、その変更が既存の判断に影響するかを確認する。対象の版が変わったときも、以前の確認をそのまま流用しない。</p>
+            <p>資料が更新されたら、変わった箇所だけでなく、その変更がこれまでの判断に影響するかどうかも確認する。対象の版が変わったときも、以前の確認結果をそのまま流用しない。</p>
             <details data-print="open">
               <summary>更新を記録する例</summary>
               <p>変更前の条件、変更後の条件、判断が変わった理由を残す。影響がなかった場合は、確認した範囲を記す。</p>
@@ -155,7 +155,7 @@
             <p>解説記事の更新日は新しくなったが、掲載された実験の日時は同じだった。どちらの時点を実験結果の説明に使うか。</p>
             <details>
               <summary>解答</summary>
-              <p>実験結果には実験時点を用いる。記事の更新日は別に記録し、更新日だけから再実験されたとは判断しない。</p>
+              <p>実験結果の説明には、実験が行われた時点を使う。記事の更新日は別に記録し、更新日だけを見て再実験されたと判断しない。</p>
             </details>
 
             <nav class="document-tabs__pager print-hide" aria-label="確認項目の前後ページ">
